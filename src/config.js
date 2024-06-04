@@ -1,1 +1,1 @@
-export const HOUNDIFY_API_KEY = "YOUR_HOUNDIFY_API_KEY";
+export const HOUNDIFY_API_KEY = "gYnAKByWe8qe5Tk1-RCsfA==";
