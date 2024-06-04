@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { HOUNDIFY_API_KEY } from "../config.js";
 import { Container, VStack, Input, Button, Text, Box, HStack, IconButton } from "@chakra-ui/react";
 import { FaMicrophone } from "react-icons/fa";
 
@@ -21,13 +22,17 @@ const Index = () => {
   };
 
   const getLLMResponse = async (query) => {
-    // Placeholder for actual Houndify API call
-    // Replace this with actual API call to Houndify
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(`Response to: ${query}`);
-      }, 1000);
+    const response = await fetch("https://api.houndify.com/v1/text", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Hound-Request-Authentication": HOUNDIFY_API_KEY,
+      },
+      body: JSON.stringify({ query }),
     });
+
+    const data = await response.json();
+    return data.AllResults[0].SpokenResponseLong;
   };
 
   return (
